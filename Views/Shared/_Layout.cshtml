@@ -11,11 +11,13 @@
 <body>
     <div class="navbar"></div>
     <div class="main">
-       <vc:room></vc:room>
-            
-
-        </div>
+        @if (HttpContext.User.Identity.IsAuthenticated)
+        {
+        <vc:room></vc:room>
+        }
         <div class="side-chat">@RenderBody()</div>
+    </div>
+     
   
     <div class="modal" id="modal-create-room">
 

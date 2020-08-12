@@ -1,7 +1,7 @@
 ﻿@model Chat
 
-    <div class="chat-body">
-
+<div class="chat-body">
+    @if (Model != null)
         @foreach (var message in Model.Messages)
         {
             <div class="message">
@@ -11,11 +11,18 @@
             </div>
         }
 
-       
 
-    </div>
-    <div class="chat-input">
-        <input type="text">
-        <button>Send</button>
 
-    </div>
+</div>
+@if (Model != null)
+{
+    <form class="chat-input" asp-controller="Home" asp-action="CreateMessage">
+
+        <input type="text" name="message">
+        <button type="submit">Send</button>
+        <input type="hidden" name="chatId" value="@Model.Id">
+
+
+    </form> }
+
+
