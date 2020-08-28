@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SignalRChatApp.Hubs
 {
-    public class ChatHub:Hub
+    public class ChatHub : Hub
     {
+        public string GetConnectionId() =>
+            Context.ConnectionId;
+
     }
 }

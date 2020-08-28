@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -11,10 +12,10 @@
 <body>
     <div class="navbar"></div>
     <div class="main">
-        @if (HttpContext.User.Identity.IsAuthenticated)
-        {
+        @*@if (HttpContext.User.Identity.IsAuthenticated)
+        {*@
         <vc:room></vc:room>
-        }
+            @*//}*@
         <div class="side-chat">@RenderBody()</div>
     </div>
      

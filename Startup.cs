@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SignalRChatApp.Database;
+using SignalRChatApp.Hubs;
 using SignalRChatApp.Models;
 
 namespace SignalRChatApp
@@ -52,7 +53,7 @@ namespace SignalRChatApp
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseSignalR(routes => {
-            
+                routes.MapHub<ChatHub>("/chatHub");
             });
             app.UseMvcWithDefaultRoute();
 

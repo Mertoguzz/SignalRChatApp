@@ -27,6 +27,13 @@ namespace SignalRChatApp.Controllers
 
             return View(chats);
         }
+
+        public IActionResult Find()
+        {
+            var users=_context.Users.Where(r=>r.Id != User.FindFirst(ClaimTypes.NameIdentifier).Value).ToList();
+            return View(users);
+        }
+
         [HttpGet("{id}")]
         public IActionResult Chat(int id)
         {

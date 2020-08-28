@@ -19,17 +19,21 @@ namespace SignalRChatApp.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var chats = _context.ChatUsers
+                    .Include(r => r.Chat)
+                    .Where(r => r.UserId == userId)
+                    .Select(r => r.Chat)
+                    .ToList();
+                return View(chats);
+            }
+
+           
 
 
-            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var chats = _context.ChatUsers
-                .Include(r => r.Chat)
-                .Where(r => r.UserId == userId)
-                .Select(r => r.Chat)
-                .ToList();
-
-
-            return View(chats);
+            return View();
         }
     }
 }
